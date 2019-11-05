@@ -4,7 +4,7 @@
   "description": "agricola on slack.",
   "main": "src/main.js",
   "scripts": {
-    "start": "node src/main.js",
+    "start": "babel-node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +17,15 @@
     "url": "https://github.com/d-freak/agricola-slack-bot/issues"
   },
   "homepage": "https://github.com/d-freak/agricola-slack-bot#readme",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
   "dependencies": {
+    "@babel/core": "^7.7.0",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.0",
     "@slack/rtm-api": "^5.0.3",
     "dotenv": "^8.2.0"
   }

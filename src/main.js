@@ -1,7 +1,10 @@
-const { RTMClient } = require('@slack/rtm-api');
-require('dotenv').config();
-const token = process.env.BOT_TOKEN;
-const rtm = new RTMClient(token);
+import { RTMClient } from '@slack/rtm-api';
+import dotenv from 'dotenv';
+
+
+
+dotenv.config();
+const rtm = new RTMClient(process.env.BOT_TOKEN);
 
 rtm.on('message', async (event) => {
   try {
