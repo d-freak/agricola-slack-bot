@@ -1,0 +1,3 @@
+[submodule "lib/agricola-js"]
+	path = lib/agricola-js
+	url = https://github.com/d-freak/agricola-js

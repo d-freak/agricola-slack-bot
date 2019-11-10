@@ -23,10 +23,13 @@
     ]
   },
   "dependencies": {
-    "@babel/core": "^7.7.0",
-    "@babel/node": "^7.7.0",
-    "@babel/preset-env": "^7.7.0",
     "@slack/rtm-api": "^5.0.3",
+    "@slack/web-api": "^5.4.0",
     "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.1"
   }
 }
