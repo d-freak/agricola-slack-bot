@@ -7,6 +7,6 @@ WORKDIR ${WORK_DIRECTORY}
 
 RUN npm install --production
 
-COPY src/ src/
+COPY dist/ dist/
 
-CMD npm run start
+CMD npm start

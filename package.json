@@ -2,9 +2,10 @@
   "name": "agricola-slack-bot",
   "version": "1.0.0",
   "description": "agricola on slack.",
-  "main": "src/main/main.js",
+  "main": "dist/bundle.js",
   "scripts": {
-    "start": "babel-node src/main/main.js",
+    "build": "webpack",
+    "start": "node dist/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,19 +18,19 @@
     "url": "https://github.com/d-freak/agricola-slack-bot/issues"
   },
   "homepage": "https://github.com/d-freak/agricola-slack-bot#readme",
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
   "dependencies": {
     "@slack/rtm-api": "^5.0.3",
-    "@slack/web-api": "^5.4.0",
-    "dotenv": "^8.2.0"
+    "@slack/web-api": "^5.5.0",
+    "core-js": "^3.4.1",
+    "dotenv": "^8.2.0",
+    "regenerator-runtime": "^0.13.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@babel/node": "^7.7.0",
-    "@babel/preset-env": "^7.7.1"
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
   }
 }

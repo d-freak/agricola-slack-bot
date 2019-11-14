@@ -4,6 +4,8 @@
  * @author masaue
  */
 
+import "core-js/stable";
+
 import Bot from './bot';
 
 
