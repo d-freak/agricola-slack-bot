@@ -11,6 +11,7 @@ import dotenv from 'dotenv';
 import CommandController from '../../lib/agricola-js/src/main/agricola/command-controller'
 
 import SlackChannelAnnouncer from './announcer/slack-channel-announcer';
+import SlackDirectAnnouncer from './announcer/slack-direct-announcer';
 
 
 
@@ -29,7 +30,7 @@ export default class Bot {
       const command = paramList.shift().toLowerCase();
       switch (command) {
       case 'entry':
-        this._entry(event);
+        this._entry(event, new SlackDirectAnnouncer(event.user, this._rtm));
         break;
       case 's':
       case 'start':
@@ -45,16 +46,16 @@ export default class Bot {
   
   
   
-  _command(event, command, parameter) {
-    this._controller.onCommand(`${event.user} ${command} ${parameter}`);
+  _command(event, command, parameter, announcer = undefined) {
+    this._controller.onCommand(`${event.user} ${command} ${parameter}`, announcer);
   }
   
-  _entry(event) {
+  _entry(event, announcer) {
     const web = new WebClient(process.env.BOT_TOKEN);
     (async () => {
       const info = await web.users.info({ user: event.user });
       const name = info.user.profile.display_name;
-      this._command(event, 'entry', name);
+      this._command(event, 'entry', name, announcer);
     })();
   }
   
