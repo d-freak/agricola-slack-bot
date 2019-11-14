@@ -10,14 +10,21 @@ import dotenv from 'dotenv';
 
 import CommandController from '../../lib/agricola-js/src/main/agricola/command-controller'
 
+import SlackChannelAnnouncer from './announcer/slack-channel-announcer';
+
+
 
 export default class Bot {
   
   constructor() {
-    this._controller = new CommandController();
     dotenv.config();
     this._rtm = new RTMClient(process.env.BOT_TOKEN);
+    this._controller = new CommandController(new SlackChannelAnnouncer(this._rtm));
     this._rtm.on('message', async (event) => {
+      if (event.subtype) {
+        // message_changedなどは無視
+        return;
+      }
       const paramList = event.text.trim().replace(/ {2,}/g, ' ').split(' ');
       const command = paramList.shift().toLowerCase();
       switch (command) {
@@ -25,14 +32,6 @@ export default class Bot {
         this._command(event, command);
         break;
       }
-      /*
-      try {
-        const reply = await this._rtm.sendMessage(`hi, <@${event.user}>`, event.channel)
-        console.log('Message sent successfully', reply.ts);
-      } catch (error) {
-        console.log('An error occurred', error);
-      }
-       */
     });
   }
   
@@ -46,8 +45,8 @@ export default class Bot {
     const web = new WebClient(process.env.BOT_TOKEN);
     (async () => {
       const info = await web.users.info({ user: event.user });
-      const name = info.profile.display_name;
-      controller.onCommand(`${event.user} ${command} ${name}`);
+      const name = info.user.profile.display_name;
+      this._controller.onCommand(`${event.user} ${command} ${name}`);
     })();
   }
   
