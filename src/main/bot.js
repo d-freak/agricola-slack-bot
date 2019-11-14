@@ -29,7 +29,11 @@ export default class Bot {
       const command = paramList.shift().toLowerCase();
       switch (command) {
       case 'entry':
-        this._command(event, command);
+        this._entry(event);
+        break;
+      case 's':
+      case 'start':
+        this._command(event, command, paramList[0]);
         break;
       }
     });
@@ -41,12 +45,16 @@ export default class Bot {
   
   
   
-  _command(event, command) {
+  _command(event, command, parameter) {
+    this._controller.onCommand(`${event.user} ${command} ${parameter}`);
+  }
+  
+  _entry(event) {
     const web = new WebClient(process.env.BOT_TOKEN);
     (async () => {
       const info = await web.users.info({ user: event.user });
       const name = info.user.profile.display_name;
-      this._controller.onCommand(`${event.user} ${command} ${name}`);
+      this._command(event, 'entry', name);
     })();
   }
   
