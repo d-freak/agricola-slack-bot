@@ -32,6 +32,9 @@ export default class Bot {
       case 'entry':
         this._entry(event, new SlackDirectAnnouncer(event.user, this._rtm));
         break;
+      case 'hand':
+        this._command(event, command);
+        break;
       case 'k':
       case 'keep':
       case 's':
