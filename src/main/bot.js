@@ -29,10 +29,16 @@ export default class Bot {
       const paramList = event.text.trim().replace(/ {2,}/g, ' ').split(' ');
       const command = paramList.shift().toLowerCase();
       switch (command) {
+      case 'e':
       case 'entry':
         this._entry(event, new SlackDirectAnnouncer(event.user, this._rtm));
         break;
+      case 'end':
+      case 'exit':
+      case 'h':
       case 'hand':
+      case 'help':
+      case 'quit':
         this._command(event, command);
         break;
       case 'k':
