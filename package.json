@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/d-freak/agricola-slack-bot#readme",
   "dependencies": {
-    "@slack/rtm-api": "^5.0.3",
+    "@slack/rtm-api": "^6.0.0",
     "@slack/web-api": "^5.8.0",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
