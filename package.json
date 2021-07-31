@@ -23,7 +23,7 @@
     "@slack/web-api": "^5.8.0",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
-    "regenerator-runtime": "^0.13.5"
+    "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
